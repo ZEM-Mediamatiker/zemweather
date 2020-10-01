@@ -28,7 +28,7 @@
                         </div>
                         <div class="weather-content-details">
                             <div class="weather-content-details-container">
-                                <h3>Luftfeuchtigkeit<span id="humidity">72%</span></h3>
+                                <h3>Luftfeuchtigkeit<span id="humidity">error</span></h3>
                                 <h3>Sonnenuntergang<span id="sunset">20:30</span></h3>
                             </div>
                         </div>
@@ -51,8 +51,8 @@
         function weatherApi (lat , lng) {
     
             // API URL
-            var aweather = 'https://api.openweathermap.org/data/2.5/weather?lat=' + lat + '&lon=' + lng + '&lang=DE&units=metric&APPID=92240c54c58c9be2ecfe57d1676c8e8e';
-            var fweather = 'https://api.openweathermap.org/data/2.5/forecast?lat=' + lat + '&lon=' + lng + '&lang=DE&units=metric&appid=92240c54c58c9be2ecfe57d1676c8e8e';
+            var aweather = 'https://api.openweathermap.org/data/2.5/weather?q=Bern&lang=DE&units=metric&APPID=92240c54c58c9be2ecfe57d1676c8e8e';
+            var fweather = 'https://api.openweathermap.org/data/2.5/forecast?q=Bern&lang=DE&units=metric&appid=92240c54c58c9be2ecfe57d1676c8e8e';
             jQuery.ajax ({
                 url: fweather,
                 type: 'GET',
@@ -186,6 +186,16 @@
                     var sysCountry			=	data.sys.country;
                     var sysSunrise			=	data.sys.sunrise;
                     var sysSunset			=	data.sys.sunset;
+
+
+
+var d = new Date(0); // The 0 there is the key, which sets the date to the epoch
+d.setUTCSeconds(sysSunset);
+
+var hours = d.getHours();
+var minutes = d.getMinutes();
+
+Sunset = hours + ":" + minutes;
                     
                     // ID
                     var id					=	data.id;
@@ -201,6 +211,8 @@
                     jQuery('#min').html( mainTempMin + "°" );
                     jQuery('#max').html( mainTempMax + "°" );
                     jQuery('#weather-text').html( weatherDesc );
+                    jQuery('#humidity').html( mainHumidity + "%" );
+                    jQuery('#sunset').html( Sunset );
                     console.log(data);
                 }
             });
