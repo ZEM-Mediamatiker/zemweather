@@ -1,0 +1,211 @@
+<html lang="de">
+    <header>
+        <title>ZEM WebApp - Wetter</title>
+        <meta charset="utf-8">
+        <meta name="author" content="Lars Heinitz">
+        <link rel="stylesheet" href="style.css">
+    </header>
+    <body id="weatherBg">
+        <div class="weather">
+            <div class="title">
+                <h1>WETTERPROGNOSE</h1>
+                <h2>Stauffacherstrasse 65</h2>
+            </div>
+            <div class="weather-wrap">
+                <div class="weather-container">
+                    <div class="weather-main">
+                        <img id="icon" src="svg/10d@2x.svg"></img>
+                        <h2 id="mainTemp">error</h2>
+                    </div>
+                    <div class="weather-content">
+                        <div class="weather-content-title">
+                            <h3>HEUTE</h3>
+                            <p id="weather-text">error</p>
+                        </div>
+                        <div class="weather-content-min-max">
+                            <span id="min">error</span>
+                            <span id="max">error</span>
+                        </div>
+                        <div class="weather-content-details">
+                            <div class="weather-content-details-container">
+                                <h3>Luftfeuchtigkeit<span id="humidity">72%</span></h3>
+                                <h3>Sonnenuntergang<span id="sunset">20:30</span></h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+        <script>
+
+    
+            var lat			=	'46.967030';
+            var lng			=	'7.456370';
+        
+            weatherApi(lat, lng);
+
+        
+        // FUNCTION
+        function weatherApi (lat , lng) {
+    
+            // API URL
+            var aweather = 'https://api.openweathermap.org/data/2.5/weather?lat=' + lat + '&lon=' + lng + '&lang=DE&units=metric&APPID=92240c54c58c9be2ecfe57d1676c8e8e';
+            var fweather = 'https://api.openweathermap.org/data/2.5/forecast?lat=' + lat + '&lon=' + lng + '&lang=DE&units=metric&appid=92240c54c58c9be2ecfe57d1676c8e8e';
+            jQuery.ajax ({
+                url: fweather,
+                type: 'GET',
+                dataType: 'jsonp',
+                success: function(data) {
+                    var fmainTemp			=	data.list[1].main.temp;
+                    var date = data.list[0].dt_txt;
+
+                    var mainTempF           =   '<h2>Cod</h2><ul><li><strong>MainTempF:</strong> ' + fmainTemp + '</li></ul>';
+                    var datum           =   '<h2>Datum</h2><ul><li><strong>Heute:</strong> ' + date + '</li></ul>';
+                    jQuery('div#test').html( mainTempF + datum);
+                    console.log(data);
+                }
+
+            });
+        
+            // WETTER API
+            jQuery.ajax ({
+                url: aweather,
+                type: 'GET',
+                dataType: 'jsonp',
+                success: function(data) {
+                    // KOORDINATEN
+                    var coordLat			=	data.coord.lat;
+                    var coordLng			=	data.coord.lon;
+                    
+                    // WETTER
+                    var weatherId			=	data.weather[0].id;
+                    var weatherMain			=	data.weather[0].main;
+                    var weatherDesc			=	data.weather[0].description;
+                    var weatherIcon			=	'<img src="https://openweathermap.org/img/w/' + data.weather[0].icon + '.png" alt="'+weatherDesc+'">';
+                    var weatherBg			=	data.weather[0].icon;
+
+                    
+                    // EXAKT
+                    
+                    if ( weatherId == 800  ) {	
+                        // klares wetter
+                        jQuery('div#weatherBg').css('background-color', 'yellow');
+                    } else if ( weatherId == 951  ) {	
+                        // ruhe
+                        jQuery('div#weatherBg').css('background-color', 'blue');
+                    } else if ( weatherId == 952  ) {	
+                        // leichte-briese
+                        jQuery('div#weatherBg').css('background-color', 'AliceBlue ');
+                    } else if ( weatherId == 954  ) {	
+                        // maessige-briese
+                        jQuery('div#weatherBg').css('background-color', 'AntiqueWhite ');
+                    } else if ( weatherId == 955  ) {	
+                        // frische-briese
+                        jQuery('div#weatherBg').css('background-color', 'Aqua');
+                    } else if ( weatherId == 956  ) {	
+                        // starke-briese
+                        jQuery('div#weatherBg').css('background-color', 'Aquamarine ');
+                    } else if ( weatherId == 957  ) {	
+                        // starker-wind
+                        jQuery('div#weatherBg').css('background-color', 'Azure');
+                    } else if ( weatherId == 958  ) {	
+                        // sturm
+                        jQuery('div#weatherBg').css('background-color', 'BlueViolet');
+                    } else if ( weatherId == 959  ) {	
+                        // starker-sturm
+                        jQuery('div#weatherBg').css('background-color', 'Brown');
+                    } else if ( weatherId == 959  ) {	
+                        // starker-sturm
+                        jQuery('div#weatherBg').css('background-color', 'BurlyWood');
+                    } else if ( weatherId == 960  ) {	
+                        // sturm
+                        jQuery('div#weatherBg').css('background-color', 'CadetBlue');
+                    } else if ( weatherId == 961  ) {	
+                        // heftiger-sturm
+                        jQuery('div#weatherBg').css('background-color', 'Chartreuse');
+                    } else if ( weatherId == 962  ) {	
+                        // hurrikan
+                        jQuery('div#weatherBg').css('background-color', 'Coral');
+                    } 
+                    
+                    // RANGE 
+                    
+                    else if ( weatherId >= 900 && weatherId <= 950  ) {	
+                        // extrem
+                        jQuery('div#weatherBg').css('background-color', 'DarkBlue');							
+                    } else if ( weatherId >= 801 && weatherId <= 899 ) {	
+                        // wolkig
+                        jQuery('div#weatherBg').css('background-color', 'DarkGrey');							
+                    } else if ( weatherId >= 701 && weatherId <= 799  ) {	
+                        // atmosphäre
+                        jQuery('div#weatherBg').css('background-color', 'DarkTurquoise');						
+                    } else if ( weatherId >= 600 && weatherId <= 700 ) {	
+                        // schnee
+                        jQuery('div#weatherBg').css('background-color', 'GhostWhite');							
+                    } else if ( weatherId >= 500 && weatherId <= 599  ) {	
+                        // regen
+                        jQuery('div#weatherBg').css('background-color', 'LightSteelBlue');							
+                    } else if ( weatherId >= 300 && weatherId <= 499  ) {	
+                        // nieselregen
+                        jQuery('div#weatherBg').css('background-color', 'LightSkyBlue');							
+                    } else if ( weatherId >= 200 && weatherId <= 299 ) {	
+                        // gewitter
+                        jQuery('div#weatherBg').css('background-color', 'MidnightBlue');
+                    }
+                    
+                    // BASE
+                    var baseData			=	data.base;
+                    
+                    // TEMP
+                    var mainTemp			=	Math.round(data.main.temp);
+ 
+                    var mainPressure		=	data.main.pressure;
+                    var mainHumidity		=	data.main.humidity;
+                    var mainTempMin			=	Math.round(data.main.temp_min);
+                    var mainTempMax			=	Math.round(data.main.temp_max);
+                    
+                    // VISIBILITY
+                    var visibility			=	data.visibility;
+                    
+                    // WIND
+                    var windSpeed			=	data.wind.speed;
+                    var windDeg				=	data.wind.deg;
+                    
+                    // CLOUDS
+                    var clouds				=	data.clouds.all;
+                    
+                    // DT
+                    var dt					=	data.dt_txt;
+                    
+                    // SYS
+                    var sysType				=	data.sys.type;
+                    var sysId				=	data.sys.id;
+                    var sysMessage			=	data.sys.message;
+                    var sysCountry			=	data.sys.country;
+                    var sysSunrise			=	data.sys.sunrise;
+                    var sysSunset			=	data.sys.sunset;
+                    
+                    // ID
+                    var id					=	data.id;
+                    
+                    // NAME
+                    var name				=	data.name;
+                    
+                    // COD
+                    var cod					=	data.cod;
+                    
+                    // OUTPUT
+                    jQuery('#mainTemp').html( mainTemp + "°" );
+                    jQuery('#min').html( mainTempMin + "°" );
+                    jQuery('#max').html( mainTempMax + "°" );
+                    jQuery('#weather-text').html( weatherDesc );
+                    console.log(data);
+                }
+            });
+        } 
+        </script>
+    </body>
+
+</html>
