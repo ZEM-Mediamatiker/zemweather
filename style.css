@@ -44,7 +44,7 @@ img {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    margin-top: 80px;
+    margin-top: 60px;
 }
 .weather-container .weather-main, .weather-container .weather-content, .weather-container .weather-content .weather-content-title {
     display: flex;
