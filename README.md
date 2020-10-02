@@ -1,1 +1,2 @@
-# zemweather.github.io
+# zemweather
+A weather Module for Xibo
