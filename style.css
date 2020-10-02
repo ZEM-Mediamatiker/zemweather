@@ -17,6 +17,7 @@ img {
 }
 .weather {
     width: 70%;
+    min-width: 1800px;
     margin: 0 auto;
     margin-top: 50px;
 }
