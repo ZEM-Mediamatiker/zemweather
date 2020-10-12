@@ -13,7 +13,11 @@ body {
 img {
     width: 100%;
     max-width: 180px;
+    min-height: 116.47px;
     margin: 20px 0;
+}
+.weather-forecast img {
+    margin: 10px 0;
 }
 .weather {
     width: 70%;
@@ -160,7 +164,7 @@ img {
     justify-content: space-between;
 }
 .weather-content.forecast .weather-content-details-container h3, .weather-content.forecast .weather-content-details-container h3 span {
-    font-size: 16px;
+    font-size: 17px;
 }
 .weather-content .weather-content-details-container h3 span {
     font-size: 26px;
