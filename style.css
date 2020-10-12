@@ -74,7 +74,7 @@ img {
 }
 .weather-container.forecast {
     width: 320px;
-    max-height: 465px;
+    max-height: 491px;
 }
 .weather-container .weather-main {
     padding: 25px 100px;
