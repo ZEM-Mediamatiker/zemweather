@@ -24,7 +24,7 @@ img {
     width: 80vw;
 }
 .weather-container, .weather-forecast .weather-container {
-    width: 19.85vw;
+    width: 19.80vw;
 }
 .weather-container .weather-main {
     height: 435px;
@@ -55,7 +55,7 @@ img {
     align-items: center;
     justify-content: center;
     height: 260px;
-    font-size: 172px;
+    font-size: 154px;
     color: #F5F5F5;
     background-color: #C1C1C1;
 }
@@ -87,11 +87,11 @@ img {
     width: 100%;
     height: 100px;
     margin: 0;
-    font-size: 22px;
+    font-size: 20px;
     font-weight: 600;
 }
 .weather-content-details .weather-content-details-container span {
-    font-size: 80px;
+    font-size: 58px;
     font-weight: 700;
 }
 .weather-content-details .weather-content-details-container h3:nth-of-type(2).current {
