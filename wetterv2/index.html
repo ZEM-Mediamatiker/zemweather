@@ -1,0 +1,387 @@
+<html lang="de">
+    <head>
+        <title>ZEM WebApp - Wetter</title>
+        <meta charset="utf-8">
+        <meta name="author" content="Lars Heinitz">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+        <div class="weather-wrap">
+            <div class="weather-container">
+                <div class="weather-main current">
+                    <img id="icon" src="svg/10d@2x.svg"></img>
+                    <div class="weather-title">
+                        <h3 >HEUTE</h3>
+                        <p id="weather-text">error</p>
+                    </div>
+                </div>
+                <div class="weather-content">
+                    <div id="weather-temperature">
+                        <h2>error</h2>
+                    </div>
+                    <div class="weather-content-min-max">
+                        <span id="min">error</span>
+                        <span id="max">error</span>
+                    </div>
+                    <div class="weather-content-details">
+                        <div class="weather-content-details-container">
+                            <h3><span id="humidity">error</span>Luftfeuchtigkeit</h3>
+                            <h3 class="current"><span id="sunset">error</span>Sonnenuntergang</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="weather-forecast">
+                <div class="weather-container forecast">
+                    <div class="weather-main forecast">
+                        <img class="icon" src="svg/10d@2x.svg"></img>
+                        <div class="weather-title forecast">
+                            <h3 class="day">HEUTE</h3>
+                            <p class="weather-text">error</p>
+                        </div>
+                    </div>
+                    <div class="weather-content forecast">
+                        <div class="weather-temperature">
+                            <h2>error</h2>
+                        </div>
+                        <div class="weather-content-min-max">
+                            <span class="min">error</span>
+                            <span class="max">error</span>
+                        </div>
+                        <div class="weather-content-details">
+                            <div class="weather-content-details-container">
+                                <h3><span class="humidity">error</span>Luftfeuchtigkeit</h3>
+                                <h3><span class="sunset">error</span>Sonnenuntergang</h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="weather-container forecast">
+                    <div class="weather-main forecast">
+                        <img class="icon" src="svg/10d@2x.svg"></img>
+                        <div class="weather-title forecast">
+                            <h3 class="day">HEUTE</h3>
+                            <p class="weather-text">error</p>
+                        </div>
+                    </div>
+                    <div class="weather-content forecast">
+                        <div class="weather-temperature">
+                            <h2>error</h2>
+                        </div>
+                        <div class="weather-content-min-max">
+                            <span class="min">error</span>
+                            <span class="max">error</span>
+                        </div>
+                        <div class="weather-content-details">
+                            <div class="weather-content-details-container">
+                                <h3><span class="humidity">error</span>Luftfeuchtigkeit</h3>
+                                <h3><span class="sunset">error</span>Sonnenuntergang</h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="weather-container forecast">
+                    <div class="weather-main forecast">
+                        <img class="icon" src="svg/10d@2x.svg"></img>
+                        <div class="weather-title forecast">
+                            <h3 class="day">HEUTE</h3>
+                            <p class="weather-text">error</p>
+                        </div>
+                    </div>
+                    <div class="weather-content forecast">
+                        <div class="weather-temperature">
+                            <h2>error</h2>
+                        </div>
+                        <div class="weather-content-min-max">
+                            <span class="min">error</span>
+                            <span class="max">error</span>
+                        </div>
+                        <div class="weather-content-details">
+                            <div class="weather-content-details-container">
+                                <h3><span class="humidity">error</span>Luftfeuchtigkeit</h3>
+                                <h3><span class="sunset">error</span>Sonnenuntergang</h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="weather-container forecast">
+                    <div class="weather-main forecast">
+                        <img class="icon" src="svg/10d@2x.svg"></img>
+                        <div class="weather-title forecast">
+                            <h3 class="day">HEUTE</h3>
+                            <p class="weather-text">error</p>
+                        </div>
+                    </div>
+                    <div class="weather-content forecast">
+                        <div class="weather-temperature">
+                            <h2>error</h2>
+                        </div>
+                        <div class="weather-content-min-max">
+                            <span class="min">error</span>
+                            <span class="max">error</span>
+                        </div>
+                        <div class="weather-content-details">
+                            <div class="weather-content-details-container">
+                                <h3><span class="humidity">error</span>Luftfeuchtigkeit</h3>
+                                <h3><span class="sunset">error</span>Sonnenuntergang</h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+        <script>
+
+    
+            var lat			=	'46.967030';
+            var lng			=	'7.456370';
+        
+            weatherApi(lat, lng);
+
+        
+        // FUNCTION
+        function weatherApi (lat , lng) {
+    
+            // API URL
+            var aweather = 'https://api.openweathermap.org/data/2.5/weather?q=Bern&lang=DE&units=metric&APPID=92240c54c58c9be2ecfe57d1676c8e8e';
+            var fweather = 'https://api.openweathermap.org/data/2.5/onecall?lat=46.967030&lon=7.456370&exclude=hourly&lang=DE&units=metric&appid=92240c54c58c9be2ecfe57d1676c8e8e';
+            jQuery.ajax ({
+                url: fweather,
+                type: 'GET',
+                dataType: 'jsonp',
+                success: function(data) {
+                    for (i = 1; i <= 4; i++ ) {
+                    var d = data.daily[i].dt;
+                    var date = new Date(0);
+                    date.setUTCSeconds(d);
+                    var day = date.getDay();
+
+                    if(day == 0) {
+                        day = "Sonntag";
+                    } else if(day == 1) {
+                        day = "Montag";
+                    } else if(day == 2) {
+                        day = "Dienstag";
+                    } else if(day == 3) {
+                        day = "Mittwoch";
+                    } else if(day == 4) {
+                        day = "Donnerstag";
+                    } else if(day == 5) {
+                        day = "Freitag";
+                    } else {
+                        day = "Samstag";
+                    }
+
+                    var sysSunset			=	data.daily[i].sunset;
+
+                    var d = new Date(0); // The 0 there is the key, which sets the date to the epoch
+                    d.setUTCSeconds(sysSunset);
+
+                    var hours = d.getHours();
+                    var minutes = d.getMinutes();
+                    minutes = minutes.toString();
+                    if (minutes.length == 1) {
+                        minutes =  "0" + minutes;
+                    }
+
+                    Sunset = hours + ":" + minutes;
+
+                    var mainTemp = '<h2>' + Math.round(data.daily[i].temp.day) + '°</h2>';
+                    var minTemp = Math.round(data.daily[i].temp.min);
+                    var maxTemp = Math.round(data.daily[i].temp.max);
+                    var weatherDesc	=	data.daily[i].weather[0].description;
+                    var weatherIcon = "svg/" + data.daily[i].weather[0].icon + "@2x.svg";
+                    var humidity = data.daily[i].humidity;
+
+                    $(".weather-container.forecast:nth-child("+ i +") .weather-main img").attr("src", weatherIcon );
+                    $(".weather-container.forecast:nth-child("+ i +") .weather-temperature").html( mainTemp );
+                    $(".weather-container.forecast:nth-child("+ i +") .weather-text").html( weatherDesc );
+                    $(".weather-container.forecast:nth-child("+ i +") .day").html( day );
+                    $(".weather-container.forecast:nth-child("+ i +") .min").html( minTemp + "°" );
+                    $(".weather-container.forecast:nth-child("+ i +") .max").html( maxTemp + "°" );
+                    $(".weather-container.forecast:nth-child("+ i +") .humidity").html( humidity + "%" );
+                    $(".weather-container.forecast:nth-child("+ i +") .sunset").html( Sunset );
+
+
+                    }
+                }
+
+            });
+        
+            // WETTER API
+            jQuery.ajax ({
+                url: aweather,
+                type: 'GET',
+                dataType: 'jsonp',
+                success: function(data) {
+                    // KOORDINATEN
+                    var coordLat			=	data.coord.lat;
+                    var coordLng			=	data.coord.lon;
+                    
+                    // WETTER
+                    var weatherId			=	data.weather[0].id;
+                    var weatherMain			=	data.weather[0].main;
+                    var weatherDesc			=	data.weather[0].description;
+                    var weatherBg			=	data.weather[0].icon;
+
+                    
+                    // EXAKT
+                    
+                    if ( weatherId == 800  ) {	
+                        // klares wetter
+                        jQuery('#weatherBg').css('background-color', '#ffcc01');
+                        jQuery('.title h1, .title h2').css('color', '#000');
+                    } else if ( weatherId == 951  ) {	
+                        // ruhe
+                        jQuery('#weatherBg').css('background-color', '#7979ee');
+                        jQuery('.title h1, .title h2').css('color', '#fff');
+                    } else if ( weatherId == 952  ) {	
+                        // leichte-briese
+                        jQuery('#weatherBg').css('background-color', 'AliceBlue ');
+                        jQuery('.title h1, .title h2').css('color', '#000');
+                    } else if ( weatherId == 954  ) {	
+                        // maessige-briese
+                        jQuery('#weatherBg').css('background-color', 'AntiqueWhite ');
+                        jQuery('.title h1, .title h2').css('color', '#000');
+                    } else if ( weatherId == 955  ) {	
+                        // frische-briese
+                        jQuery('#weatherBg').css('background-color', 'Aqua');
+                        jQuery('.title h1, .title h2').css('color', '#000');
+                    } else if ( weatherId == 956  ) {	
+                        // starke-briese
+                        jQuery('#weatherBg').css('background-color', 'Aquamarine ');
+                        jQuery('.title h1, .title h2').css('color', '#000');
+                    } else if ( weatherId == 957  ) {	
+                        // starker-wind
+                        jQuery('#weatherBg').css('background-color', 'Azure');
+                        jQuery('.title h1, .title h2').css('color', '#000');
+                    } else if ( weatherId == 958  ) {	
+                        // sturm
+                        jQuery('#weatherBg').css('background-color', 'BlueViolet');
+                        jQuery('.title h1, .title h2').css('color', '#fff');
+                    } else if ( weatherId == 959  ) {	
+                        // starker-sturm
+                        jQuery('#weatherBg').css('background-color', 'Brown');
+                        jQuery('.title h1, .title h2').css('color', '#fff');
+                    } else if ( weatherId == 959  ) {	
+                        // starker-sturm
+                        jQuery('#weatherBg').css('background-color', 'BurlyWood');
+                        jQuery('.title h1, .title h2').css('color', '#fff');
+                    } else if ( weatherId == 960  ) {	
+                        // sturm
+                        jQuery('#weatherBg').css('background-color', 'CadetBlue');
+                        jQuery('.title h1, .title h2').css('color', '#fff');
+                    } else if ( weatherId == 961  ) {	
+                        // heftiger-sturm
+                        jQuery('#weatherBg').css('background-color', 'Chartreuse');
+                        jQuery('.title h1, .title h2').css('color', '#fff');
+                    } else if ( weatherId == 962  ) {	
+                        // hurrikan
+                        jQuery('#weatherBg').css('background-color', 'Coral');
+                        jQuery('.title h1, .title h2').css('color', '#fff');
+                    } 
+                    
+                    // RANGE 
+                    
+                    else if ( weatherId >= 900 && weatherId <= 950  ) {	
+                        // extrem
+                        jQuery('#weatherBg').css('background-color', 'DarkBlue');
+                        jQuery('.title h1, .title h2').css('color', '#fff');							
+                    } else if ( weatherId >= 801 && weatherId <= 899 ) {	
+                        // wolkig
+                        jQuery('#weatherBg').css('background-color', 'DarkGrey');
+                        jQuery('.title h1, .title h2').css('color', '#fff');							
+                    } else if ( weatherId >= 701 && weatherId <= 799  ) {	
+                        // atmosphäre
+                        jQuery('#weatherBg').css('background-color', 'DarkTurquoise');
+                        jQuery('.title h1, .title h2').css('color', '#fff');						
+                    } else if ( weatherId >= 600 && weatherId <= 700 ) {	
+                        // schnee
+                        jQuery('#weatherBg').css('background-color', 'GhostWhite');
+                        jQuery('.title h1, .title h2').css('color', '#000');							
+                    } else if ( weatherId >= 500 && weatherId <= 599  ) {	
+                        // regen
+                        jQuery('#weatherBg').css('background-color', 'LightSteelBlue');	
+                        jQuery('.title h1, .title h2').css('color', '#fff');						
+                    } else if ( weatherId >= 300 && weatherId <= 499  ) {	
+                        // nieselregen
+                        jQuery('#weatherBg').css('background-color', 'LightSkyBlue');
+                        jQuery('.title h1, .title h2').css('color', '#fff');							
+                    } else if ( weatherId >= 200 && weatherId <= 299 ) {	
+                        // gewitter
+                        jQuery('#weatherBg').css('background-color', 'MidnightBlue');
+                        jQuery('.title h1, .title h2').css('color', '#fff');
+                    }
+                    
+                    // BASE
+                    var baseData			=	data.base;
+                    
+                    // TEMP & ICON
+                    var mainTemp			=	'<h2>' + Math.round(data.main.temp) + '°</h2>';
+                    var weatherIcon			=	'svg/' + data.weather[0].icon + '@2x.svg';
+ 
+                    var mainPressure		=	data.main.pressure;
+                    var mainHumidity		=	data.main.humidity;
+                    var mainTempMin			=	Math.round(data.main.temp_min);
+                    var mainTempMax			=	Math.round(data.main.temp_max);
+                    
+                    // VISIBILITY
+                    var visibility			=	data.visibility;
+                    
+                    // WIND
+                    var windSpeed			=	data.wind.speed;
+                    var windDeg				=	data.wind.deg;
+                    
+                    // CLOUDS
+                    var clouds				=	data.clouds.all;
+                    
+                    // DT
+                    var dt					=	data.dt_txt;
+                    
+                    // SYS
+                    var sysType				=	data.sys.type;
+                    var sysId				=	data.sys.id;
+                    var sysMessage			=	data.sys.message;
+                    var sysCountry			=	data.sys.country;
+                    var sysSunrise			=	data.sys.sunrise;
+                    var sysSunset			=	data.sys.sunset;
+
+
+
+                    var d = new Date(0); // The 0 there is the key, which sets the date to the epoch
+                    d.setUTCSeconds(sysSunset);
+
+                    var hours = d.getHours();
+                    var minutes = d.getMinutes();
+                    minutes = minutes.toString();
+                    if (minutes.length == 1) {
+                        minutes =  "0" + minutes;
+                    }
+
+                    Sunset = hours + ":" + minutes;
+                    
+                    // ID
+                    var id					=	data.id;
+                    
+                    // NAME
+                    var name				=	data.name;
+                    
+                    // COD
+                    var cod					=	data.cod;
+                    // OUTPUT 
+                    jQuery('.weather-main img').attr("src", weatherIcon);
+                    jQuery('#weather-temperature').html ( mainTemp );
+                    jQuery('#min').html( mainTempMin + "°" );
+                    jQuery('#max').html( mainTempMax + "°" );
+                    jQuery('#weather-text').html( weatherDesc );
+                    jQuery('#humidity').html( mainHumidity + "%" );
+                    jQuery('#sunset').html( Sunset );
+                }
+            });
+        } 
+        </script>
+    </body>
+
+</html>
