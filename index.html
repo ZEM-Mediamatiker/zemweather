@@ -21,8 +21,8 @@
                         <h2>error</h2>
                     </div>
                     <div class="weather-content-min-max">
-                        <span id="min">error</span>
-                        <span id="max">error</span>
+                        <div id="min">error</div>
+                        <div id="max">error</div>
                     </div>
                     <div class="weather-content-details">
                         <div class="weather-content-details-container">
@@ -373,8 +373,8 @@
                     // OUTPUT 
                     jQuery('.weather-main img').attr("src", weatherIcon);
                     jQuery('#weather-temperature').html ( mainTemp );
-                    jQuery('#min').html( mainTempMin + "°" );
-                    jQuery('#max').html( mainTempMax + "°" );
+                    jQuery('#min').html( "<span>MIN</span>" + mainTempMin + "°" );
+                    jQuery('#max').html( "<span>MAX</span>" + mainTempMax + "°" );
                     jQuery('#weather-text').html( weatherDesc );
                     jQuery('#humidity').html( mainHumidity + "%" );
                     jQuery('#sunset').html( Sunset );
